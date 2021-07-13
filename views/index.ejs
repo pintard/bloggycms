@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Device metadata -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page properties -->
+    <script type="module" src="/public/src/admin.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/public/styles/admin.css" />
+    <title>Your posts</title>
+</head>
+
+<body>
+    <nav class="page-navbar">
+        <div class="navbar-group-left">
+            <h1 class="nav-title">Posts</h1>
+            <input id="search-field" placeholder="Search posts" />
+        </div>
+        <a href="/posts/new" class="action-button create">create</a>
+    </nav>
+
+    <div id="admin-main">
+        <% posts.forEach(post=> { %>
+            <div class="content-post">
+                <div class="content-post-body">
+                    <span>
+                        <a href="posts/<%= post.slug %>">
+                            <%= post.title %>
+                        </a>
+                    </span>
+                    <span>Created on <%= post.created %></span>
+                    <span><%= post.description %></span>
+                </div>
+                <div class="content-post-control">
+                    <form class="upload-button">
+                        <button
+                            name="upload"
+                            value="<%= post.id %>"
+                            class="control-option upload
+                            <%= post.uploaded ? " active" : "" %>"><%= post.uploaded ? "uploaded" : "upload" %></button>
+                    </form>
+                    <a href="posts/edit/<%= post.id %>" class="control-option">edit</a>
+                    <form class="delete-button">
+                        <button name="delete" value="<%= post.id %>" class="control-option delete">delete</button>
+                    </form>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+
+    <form method="POST">
+        <button name="logout" id="logout" type="submit">logout</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Device metadata -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page properties -->
+    <script src="/public/src/marked.min.js" crossorigin></script>
+    <script type="module" src="/public/src/writepost.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/public/styles/writepost.css" />
+    <title>Create a post</title>
+</head>
+
+<body>
+    <%- include('_navbar') %>
+    <div id="post-main">
+        <%- include('_form') %>
+        <div id="view-md">
+            <h1></h1>
+            <h2></h2>
+            <article></article>
+        </div>
+    </div>
+    <span id="image-panel"></span>
+</body>
+
+</html>

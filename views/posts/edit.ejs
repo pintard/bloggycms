@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Device metadata -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page properties -->
+    <script src="/public/src/marked.min.js" crossorigin></script>
+    <script type="module" src="/public/src/writepost.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/public/styles/writepost.css" />
+    <title>Edit post</title>
+</head>
+
+<body>
+    <nav class="page-navbar">
+        <div class="navbar-group-left">
+            <h1 class="nav-title">Edit post</h1>
+        </div>
+        <div class="navbar-group-right">
+            <button id="discard-post" class="action-button discard">discard</button>
+            <button id="save-post" class="action-button save">save</button>
+        </div>
+    </nav>
+
+    <div id="post-main">
+        <form id="create-form">
+            <%- include('_fields') %>
+        </form>
+        <div id="view-md">
+            <h1></h1>
+            <h2></h2>
+            <article></article>
+        </div>
+    </div>
+
+    <button id="md-preview-button">preview</button>
+    <button id="add-image">image</button>
+    <span id="image-panel"></span>
+
+    <div id="tag-field-container">
+        <div id="tag-container"></div>
+        <input id="tag-field" type="text" placeholder="Enter your tags">
+    </div>
+
+</body>
+
+</html>

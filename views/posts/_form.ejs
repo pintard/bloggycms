@@ -1,0 +1,16 @@
+<form id="create-form">
+    <textarea name="title" class="create-fields" id="title-field" placeholder="What's up?" autofocus
+        required autocomplete="off" rows="1"><%= post.title %></textarea>
+
+    <textarea name="description" class="create-fields" id="sub-title-field" placeholder="Subtitle or description"
+        autocomplete="off" rows="1"><%= post.description %></textarea>
+
+    <textarea name="bodyMD" class="create-fields" id="main-text-field" required autocomplete="off"
+        rows="1"><%= post.bodyMD %></textarea>
+
+    <input name="tags" type="hidden" id="form-tag-input" value="<%= post.tags %>" />
+
+    <input name="images" type="hidden" id="form-image-input" value="<%= post.images %>" />
+
+    <button id="save-button" type="submit"></button>
+</form>
