@@ -59,61 +59,7 @@ APP.route('/')
      * Invoked by view engine source
      * Uninterruptible by other admin page post requests
      */
-    .post(async (request, response) => {
-        const admin = await User.findOne()
-        if ('logout' in request.body) {
-            console.log("logging out")
-            admin.updateOne({ session: false }).exec()
-            response.cookie('JWT_token', '', { maxAge: 0 })
-            response.redirect('/login')
-        }
-    })
-    /**
-     * Admin page PUT request used for changing article live status
-     * Assists in reflecting uploaded posts on the client side as indicated
-     * on the database and conversely
-     * Responsive to search field use
-     */
-    .put(async (request, response) => {
-        await Post.findById(request.body.upload, (error, document) => {
-            document.uploaded = !document.uploaded ? true : false
-            document.save()
-            response.json({ uploaded: document.uploaded })
-            console.log("uploaded", request.body.upload, document.uploaded)
-        })
-    })
-    /**
-     * Admin page DELETE request used for deleting posts
-     * Deletes posts from database and sends information to dynamically
-     * remove HTML element
-     * For tag/category, filters deleted post name from list of associated articles
-     * For images, deletes associated image directory if exists
-     * Responsive to search field use
-     */
-    .delete(async (request, response) => {
-        await Post.findByIdAndDelete(request.body.delete, (error, postToDelete) => {
-            if (!postToDelete.tags.includes('')) {
-                postToDelete.tags.forEach(async tag => {
-                    await Category.findOne({ name: tag }, (_, observedTag) => {
-                        observedTag.modified = Date.now()
-                        observedTag.slugs = observedTag.slugs.filter(val =>
-                            val !== postToDelete.slug)
-                        observedTag.save()
-                    })
-                })
-            }
-            if (FS.existsSync(`images/${request.body.delete}`)) {
-                try {
-                    FS.rmdirSync(`images/${request.body.delete}`, { recursive: true })
-                    console.log(request.body.delete, "directory deleted")
-                } catch (error) {
-                    console.error(error.toString())
-                }
-            }
-        })
-        response.status(204).send()
-        console.log("deleted", request.body.delete)
-    })
+    
 
 APP.use('/login', loginRouter)
 APP.use('/posts', postsRouter)
