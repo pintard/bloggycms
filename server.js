@@ -59,10 +59,10 @@ APP.route('/')
      * Invoked by view engine source
      * Uninterruptible by other admin page post requests
      */
-    
 
-APP.use('/login', loginRouter)
-APP.use('/posts', postsRouter)
+
+// APP.use('/login', loginRouter)
+// APP.use('/posts', postsRouter)
 APP.get('*', (_, response) => response.status(404).send('404 error'))
 
 APP.listen(port, error => error ?
