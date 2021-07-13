@@ -12,6 +12,7 @@ const User = require('./models/user')
 const Category = require('./models/category')
 const loginRouter = require('./routes/login')
 const postsRouter = require('./routes/posts')
+const { response } = require('express')
 const port = process.env.PORT
 // https://github.com/venables/node-where
 
@@ -48,10 +49,11 @@ APP.use(Express.json())
 APP.use(cookieParser())
 
 APP.route('/')
-    .get(verifyToken, async (request, response) => {
-        const posts = await Post.find().sort({ created: -1 })
-        response.render('index', { posts: posts })
-    })
+    // .get(verifyToken, async (request, response) => {
+    //     const posts = await Post.find().sort({ created: -1 })
+    //     response.render('index', { posts: posts })
+    // })
+    .get ((req, res)=> {res.send('lol')})
     /**
      * Admin page POST request used for user logout
      * Invoked by view engine source
