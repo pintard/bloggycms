@@ -29,17 +29,17 @@ Date.prototype.toString = function () {
 }
 
 const START_TIME = (new Date()).getTime()
-Mongoose.connect(process.env.DATABASE_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-}, () => console.log('Connection took', ((new Date()).getTime() - START_TIME) / 1000))
+// Mongoose.connect(process.env.DATABASE_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false
+// }, () => console.log('Connection took', ((new Date()).getTime() - START_TIME) / 1000))
 
-DB.on('error', error => console.error(error))
-DB.once('open', () => console.log(
-    `\x1b[34mConnected to \x1b[36m${process.env.DATABASE_URI}\x1b[0m`
-))
+// DB.on('error', error => console.error(error))
+// DB.once('open', () => console.log(
+//     `\x1b[34mConnected to \x1b[36m${process.env.DATABASE_URI}\x1b[0m`
+// ))
 APP.set('view engine', 'ejs')
 APP.set('json spaces', 2)
 APP.use('/public', Express.static(`${__dirname}/public`))
